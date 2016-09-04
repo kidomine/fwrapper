@@ -13,7 +13,7 @@ do {                                  \
 	ftlog_Common(__FILE__,        \
 		     __LINE__,        \
 		     __FUNCTION__,    \
-		     "[ERR]",         \
+		     "ERR",           \
 		     __VA_ARGS__);    \
 } while(0)
 
@@ -23,7 +23,7 @@ do {                                  \
 	ftlog_Common(__FILE__,        \
 		     __LINE__,        \
 		     __FUNCTION__,    \
-		     "[INF]",         \
+		     "INF",           \
 		     __VA_ARGS__);    \
 } while(0)
 

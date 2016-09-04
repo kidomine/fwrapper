@@ -356,9 +356,10 @@ ftcore_CreateFtLibrary(void)
 }
 
 FT_Error
-ftcore_DestroyFtLibrary(FT_Library ft_library)
+ftcore_DestroyFtLibrary(FT_Library *pft_library)
 {
-	FT_Error ft_result = -1;
+	FT_Error   ft_result  = -1;
+	FT_Library ft_library = *pft_library;
 
 	FTLOG_INF("destroying FreeType library: %p...\n", ft_library);
 
@@ -369,6 +370,8 @@ ftcore_DestroyFtLibrary(FT_Library ft_library)
 	} else {
 		FTLOG_ERR("unable to destroy FreeType library!\n");
 	}
+
+	*pft_library = NULL;
 
 	return ft_result;
 }
@@ -392,9 +395,10 @@ ftcore_CreateFace(FT_Library ft_library, const char *ft_fontpath, FT_Long ft_ind
 }
 
 FT_Error
-ftcore_DestroyFace(FT_Face ft_face)
+ftcore_DestroyFace(FT_Face *pft_face)
 {
 	FT_Error ft_result = -1;
+	FT_Face  ft_face   = *pft_face;
 
 	FTLOG_INF("destroying face: %p...\n", ft_face);
 
@@ -405,6 +409,8 @@ ftcore_DestroyFace(FT_Face ft_face)
 	} else {
 		FTLOG_ERR("unable to destroy face!\n");
 	}
+
+	*pft_face = NULL;
 
 	return ft_result;
 }

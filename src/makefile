@@ -30,11 +30,11 @@ LIBRARY=lib$(LIB_NAME).a
 	$(CC) $(CCOPTS) $(H_INC_DIR) -o $@ $<
 
 $(LIBRARY) : $(_OSRC)
-	$(AR) $(AROPTS) $@ $<
+	$(AR) $(AROPTS) $@ $(_OSRC)
 
 $(TST_NAME) : $(LIBRARY) $(_TSRC)
-	$(CC) $(L_INC_DIR) $(D_LIB_DEPS) -o $@ $< \
-	-B static $(S_LIB_DEPS)
+	$(CC) $(L_INC_DIR) -lcunit $(D_LIB_DEPS) -o $@ $(_TSRC) \
+	$(LIBRARY) -B static $(S_LIB_DEPS)
 
 $(APP_NAME) : $(LIBRARY) $(_ASRC)
 	$(CC) $(L_INC_DIR) $(D_LIB_DEPS) -o $@ $< \
